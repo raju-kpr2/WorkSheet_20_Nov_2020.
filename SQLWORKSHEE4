@@ -1,0 +1,119 @@
+SQL – WORKSHEET 4
+
+1. Write SQL query to show average number of orders shipped in a day (use Orders table)
+
+SELECT AVG( orders_num )
+FROM (
+SELECT shippedDate, COUNT( DISTINCT orderNumber ) orders_num
+FROM Orders
+GROUP BY CAST( shippedDate AS DATE )
+)orders_per_day
+
+2. Write SQL query to show average number of orders placed in a day.
+
+SELECT AVG( orders_num )
+FROM (
+SELECT OrderDate, COUNT( DISTINCT orderNumber ) orders_num
+FROM Orders
+GROUP BY CAST( OrderDate AS DATE )
+)orders_per_day
+
+3. Write SQL query to show the product name with minimum MSRP (use Products table)
+select productName,min(MSRP) from products group by productName
+
+4. Write SQL query to show the product name with maximum value of stockQuantity.
+
+with cts as (
+select productName,Row_Number() over(order by quantityInStock desc) orders_num from products 
+)
+select * from cts where orders_num=1
+
+5. Write a query to show the most ordered product Name (the product with maximum number of orders).
+with cts as (
+select productcode,row_number()over(order by stock desc ) stockorder from (
+select productcode,count(quantityOrdered) stock from orderdetails group by productcode) A
+)
+
+select b.productName,a.stockorder from cts a
+join products b on a.productcode=b.productcode
+where b.stockorder=1
+
+6. Write a SQL query to show the highest paying customer Name
+
+with cts as (
+select customerNumber,row_number()over(order by TotalAmount desc ) TotalAmount from (
+select customerNumber,sum(amount) TotalAmount from payments group by productcode) A
+)
+select b.customerNumber,b.customerName from cts a
+join customers b on a.customerNumber=b.customerNumber
+where b.TotalAmount=1
+
+7. Write a SQL query to show cutomerNumber, customerName of all the customers who are from Melbourne city
+
+select cutomerNumber, customerName from customers where city='Melbourne'
+
+
+8. Write a SQL query to show name of all the customers whose name start with “N”
+
+select cutomerNumber, customerName from customers where customerName like 'N%'
+
+9. Write a SQL query to show name of all the customers whose phone start with ‘^7.*’ and are from city ‘LasVegas’.
+
+
+select * from customers where city='LasVegas' and phone like '7%'
+
+10. Write a SQL query to show name of all the customers whose creditLimit < 1000 and city is either “Las Vegas”
+or ”Nantes” or “Stavern”
+
+select * from customers where (city='LasVegas' or city='Nantes' or city='Stavern'  ) and creditLimit < 1000 
+
+11. Write a SQL query to show all the orderNumber in which quantity ordered <10
+
+select orderNumber from orderdetails where  quantityordered <10
+
+12. Write a SQL query to show all the orderNumber whose customer Name start with letter N
+
+select b.orderNumber  from customers a
+join orders b on a.customerNumber=b.customerNumber
+where a.customerName like 'N%'
+
+13. Write a SQL query to show all the customerName whose orders are “Disputed” in status
+
+select a.customerName  from customers a
+join orders b on a.customerNumber=b.customerNumber
+where b.status ='Disputed'
+
+
+14.Write a SQL query to show the customerName who made payment through cheque with checkNumber starting
+with H and made payment on “2004-10-19”
+
+select b.customerName from payments a
+join customers b on a.customerNumber=b.customerNumber
+where b.checkNumber like 'H%' and paymentDate=  CAST( '2004-10-19' AS DATE )
+
+15.Write a SQL query to show all the checkNumber whose amount > 1000
+
+select checkNumber from payments where amount > 1000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

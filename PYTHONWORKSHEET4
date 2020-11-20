@@ -1,0 +1,63 @@
+PYTHON WORKSHEET – WORKSHEET 4
+
+1)B
+2)C
+3)B
+4)D
+5)C
+6)B
+7)C
+8)A
+9)A,D
+10)A,B,D
+11)interpreter is a program that directly executes instructions written in a programming language
+compiler is a program that transforms source code in a low(er)-level language
+python language is interpreted. But that is half correct the python program is first compiled and then interpreted.
+
+12) It is used to set the path for the user-defined modules so that it can be directly imported into a Python program. 
+It is also responsible for handling the default search path for Python Modules
+
+13)s = '   machine learning   '
+   print(s.strip())
+ 
+14) 
+
+r=12345
+import numpy as np
+c=''
+#  1*10000 + 2*1000 + 3*100 + 4*10 + 5*1 
+y=[int(x) for x in str(r)]
+# z=[str(y[x-1])+'*' + str(np.zeros(len(y[:-x])+1 , dtype = int)) for x in y]
+# print(str(z))
+for i in y:
+  if len(y[:-i])==0 :
+    c=c+str(y[i-1])+'*1' +'0' * (len(y[:-i])) 
+  else :
+    c=c+str(y[i-1])+'*1' +'0' * (len(y[:-i])) +'+'
+
+print(c)
+
+15)
+
+# Python program to check if the number is an Armstrong number or not
+# 153 = 1*1*1 + 5*5*5 + 3*3*3  // 153 is an Armstrong number.
+# take input from the user
+num = int(input("Enter a number: "))
+
+# initialize sum
+sum = 0
+
+# find the sum of the cube of each digit
+temp = num
+while temp > 0:
+   digit = temp % 10
+   sum += digit ** 3
+   temp //= 10
+
+# display the result
+if num == sum:
+   print(num,"is an Armstrong number")
+else:
+   print(num,"is not an Armstrong number") 
+   
+   

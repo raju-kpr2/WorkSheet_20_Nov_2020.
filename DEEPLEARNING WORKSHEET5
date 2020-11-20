@@ -1,0 +1,35 @@
+DEEP LEARNING – WORKSHEET 5
+1)D
+2)C
+3)D
+4)A
+5)B
+6)C
+7)B
+8)A
+9)A,D
+10)C,D
+11)A convex function: given any two points on the curve there will be no intersection with any other points, 
+for non convex function there will be at least one intersection. 
+In terms of cost function with a convex type you are always guaranteed to have a global minimum, whilst for a non convex only local minima.
+
+Convex optimization is a subfield of mathematical optimization that studies the problem of minimizing convex functions over convex sets
+12)
+When we optimize neural networks or any high dimensional function, for most of the trajectory we optimize, 
+the critical points(the points where the derivative is zero or close to zero) are saddle points
+
+a point on a curved surface at which the curvatures in two mutually perpendicular planes are of opposite signs
+
+13)
+Momentum method is a technique that can speed up gradient descent by taking accounts of previous gradients in the update rule at every iteration.
+
+where v is the velocity term, the direction and speed at which the parameter should be twisted and α is the decaying hyper-parameter, which determines how quickly collected previous gradients will decay. If α is much bigger than η, the accumulated previous gradients will be dominant in the update rule so the gradient at the iteration will not change the current direction quickly. 
+In the other hand, if α is much smaller than η, the accumulated previous gradients can act as a smoothing factor for the gradient.
+
+14)
+
+The aim of weight initialization is to prevent layer activation outputs from exploding or vanishing during the course of a forward pass through a deep neural network
+
+15)
+
+An internal covariate shift occurs when there is a change in the input distribution to our network. When the input distribution changes, hidden layers try to learn to adapt to the new distribution
